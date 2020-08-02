@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+    text-align: center;
+    color: #4b4b1d;
+    }
+    span{
+    font-size:14px;
+    }
+    table{
+    border-collapse: collapse;
+    width: 80%;
+    }
+    table,td,th{
+    border:1px solid darkmagenta;
+    }
+    </style>
+</head>
+<body>
+<span>员工信息</span>
+
+<table  align="center" border="1">
+    <tr>
+        <td>编码</td>
+        <td>员工姓名</td>
+        <td>薪资</td>
+        <td>生日</td>
+        <td>照片</td>
+        <td>部门</td>
+        <td>操作</td>
+
+    </tr>
+    <tr  th:each="emp:${elist}">
+        <td  th:text="${emp.eid}"></td>
+        <td  th:text="${emp.ename}"></td>
+        <td  th:text="${emp.salary}"></td>
+        <td  th:text="${emp.birthday}"></td>
+        <td>
+            <img th:src="@{${emp.photo}}" width="80" height="80">
+        </td>
+        <td  th:text="${emp.dept.dname}"></td>
+        <td>
+            <a  th:href="${'/emp/deleteEmp?eid='+emp.eid}">删除</a>
+            <a   th:href="${'/emp/findById?eid='+emp.eid}">修改</a>
+        </td>
+
+  </tr>
+
+</table>
+<a  th:href="${'/emp/toAdd'}">添加</a>
+</body>
+</html>
